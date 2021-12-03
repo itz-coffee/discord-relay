@@ -1,5 +1,5 @@
 import { WebSocketServer, WebSocket, RawData } from "ws";
-import { WSS_SECRET, BOT_TOKEN, CHANNEL_ID, WEBHOOK, PORT } from "./config.json";
+import { WSS_SECRET, WSS_PORT, BOT_TOKEN, CHANNEL_ID, WEBHOOK } from "./config.json";
 import { Client, Intents, Message } from "discord.js";
 import { Webhook } from "discord-webhook-node";
 import { IncomingMessage } from "http";
@@ -10,7 +10,7 @@ type Response = {
   text: string
 }
 
-const wss = new WebSocketServer({ port: PORT });
+const wss = new WebSocketServer({ port: WSS_PORT });
 const webhook = new Webhook(WEBHOOK);
 
 wss.on("connection", async (socket: WebSocket, req: IncomingMessage): Promise<void> => {
@@ -40,7 +40,8 @@ bot.on("messageCreate", (message: Message): void => {
 
   wss.clients.forEach((socket: WebSocket): void => {
     if (socket.readyState === WebSocket.OPEN) {
-      socket.send(`${message.author.username}: ${message.content}`);
+      // socket.send(`${message.author.username}: ${message.content}`);
+      socket.send(`wildflowericecoffee: ${message.content}`);
     }
   });
 });
