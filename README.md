@@ -21,7 +21,6 @@ git clone https://github.com/wildflowericecoffee/discord-relay.git
 Move the `addons` folder to your Garry's Mod addons folder.
 - Install dependencies
 
-On the `web` folder, run
 ```
 cd web
 yarn
@@ -35,8 +34,9 @@ Rename the `.json.example` files to `.json` and fill out the config variables
 | WSS_PORT        	| The port to run the websocket server on.              	|
 | BOT_TOKEN       	| A Discord bot token.                                  	|
 | CHANNEL_ID      	| The channel ID of where the messages will be relayed. 	|
-| WEBHOOK         	| A Discord webhook of to post messages.                	|
+| WEBHOOK         	| A Discord webhook to post messages.                		|
 - Start the websocket server
+
 ```
 yarn build && yarn start
 ```
