@@ -40,8 +40,7 @@ bot.on("messageCreate", (message: Message): void => {
 
   wss.clients.forEach((socket: WebSocket): void => {
     if (socket.readyState === WebSocket.OPEN) {
-      // socket.send(`${message.author.username}: ${message.content}`);
-      socket.send(`wildflowericecoffee: ${message.content}`);
+      socket.send(`${message.author.username}: ${message.content}`);
     }
   });
 });
