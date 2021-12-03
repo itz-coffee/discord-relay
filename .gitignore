@@ -2,6 +2,6 @@ web/node_modules
 web/dist/**/*
 
 **/config.json
-**/discord_relay.json
+**/discord_relay.yml
 
 yarn.lock

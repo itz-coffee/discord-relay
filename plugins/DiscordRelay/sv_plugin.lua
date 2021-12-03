@@ -1,6 +1,7 @@
+local PLUGIN = PLUGIN
 require("gwsockets")
 
-local config = util.JSONToTable(file.Read("addons/discord_relay.json", "MOD"))
+local config = ix.yaml.Read("gamemodes/helix/discord_relay.yml")
 local WSS_SECRET = config.WSS_SECRET
 local WSS_PORT = config.WSS_PORT
 
@@ -50,21 +51,23 @@ local function fetchAvatarURL(steamID64)
     end)
 end
 
-hook.Add("PlayerAuthed", "DiscordFetchAvatar", function(client, steamid)
+function PLUGIN:PlayerAuthed(client, steamid)
     fetchAvatarURL(util.SteamIDTo64(steamid))
-end)
+end
 
-hook.Add("PlayerDisconnected", "DiscordClearAvatar", function(client)
+function PLUGIN:PlayerDisconnected(client)
     fetchedavatars[client:SteamID64()] = nil
-end)
+end
 
-hook.Add("PlayerSay", "DiscordRelay", function(client, text)
+function PLUGIN:PlayerSay(client, chatType, message)
+    if chatType ~= "ooc" then return end
+
     local data = {
-        user = client.SteamName and client:SteamName() or client:Name(),
+        user = client:SteamName(),
         avatar = fetchAvatarURL(client:SteamID64()),
-        text = text
+        text = message
     }
     socket:write(util.TableToJSON(data))
-end)
+end
 
 socket:open()
