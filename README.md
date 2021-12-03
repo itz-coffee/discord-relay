@@ -1,6 +1,10 @@
 # discord-relay
 A discord chat relay for Garry's Mod
 
+![image](https://user-images.githubusercontent.com/36643731/144539412-3a7693ac-2b18-4759-af60-4e29b1bf40a0.png)
+
+![image](https://user-images.githubusercontent.com/36643731/144539488-02d29799-e3f8-41dd-935e-c76d74392b2e.png)
+
 # Requirements
 - Garry's Mod
 - [Node.js](https://nodejs.org)
