@@ -1,6 +1,12 @@
 # discord-relay
 A discord chat relay for Garry's Mod
 
+# Requirements
+- Garry's Mod
+- [Node.js](https://nodejs.org)
+- [GWSockets](https://github.com/FredyH/GWSockets)
+- [Discord bot](https://discord.com/developers/applications)
+
 # Getting Started
 - Clone the repository
 ```
@@ -11,14 +17,13 @@ git clone https://github.com/wildflowericecoffee/discord-relay.git
 Move the `DiscordRelay` addon to your Garry's Mod server's addons folder.
 - Install dependencies
 
+Download [GWSockets](https://github.com/FredyH/GWSockets)
+
 On the `web` folder, run
 ```
-cd <project_name>
+cd web
 yarn install
 ```
-- Create a Discord bot
-
-Make an application at https://discord.com/developers/applications, invite it to your server and copy the bot token.
 - Configuration
 
 Rename the `.json.example` files to `.json` and fill out the config variables
