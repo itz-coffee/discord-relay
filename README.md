@@ -17,8 +17,6 @@ git clone https://github.com/wildflowericecoffee/discord-relay.git
 Move the `DiscordRelay` addon to your Garry's Mod server's addons folder.
 - Install dependencies
 
-Download [GWSockets](https://github.com/FredyH/GWSockets)
-
 On the `web` folder, run
 ```
 cd web
