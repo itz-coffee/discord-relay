@@ -20,7 +20,7 @@ Move the `DiscordRelay` addon to your Garry's Mod server's addons folder.
 On the `web` folder, run
 ```
 cd web
-yarn install
+yarn
 ```
 - Configuration
 
