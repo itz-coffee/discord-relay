@@ -1,11 +1,9 @@
 require("gwsockets")
 
 local config = util.JSONToTable(file.Read("addons/discord_relay.json", "MOD"))
-local WSS_SECRET = config.WSS_SECRET
-local WSS_PORT = config.WSS_PORT
 
-local socket = GWSockets.createWebSocket("ws://localhost:" .. WSS_PORT)
-socket:setHeader("Authorization", WSS_SECRET)
+local socket = GWSockets.createWebSocket("ws://" .. config.WSS_HOST .. ":" .. config.WSS_PORT)
+socket:setHeader("Authorization", config.WSS_SECRET)
 
 util.AddNetworkString("DiscordChat")
 
@@ -44,7 +42,7 @@ local function fetchAvatarURL(steamID64)
     if fetchedavatars[steamID64] then return fetchedavatars[steamID64] end
 
     http.Fetch("http://steamcommunity.com/profiles/" .. steamID64 .. "/?xml=1", function(body)
-        local link = body:match("https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/.-jpg")
+        local link = body:match("https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/.-jpg")
         if not link then return end
         fetchedavatars[steamID64] = link:Replace(".jpg", "_full.jpg")
     end)
