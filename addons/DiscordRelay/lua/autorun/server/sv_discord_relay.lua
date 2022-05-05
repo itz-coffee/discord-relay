@@ -52,7 +52,6 @@ hook.Add("PlayerAuthed", "DiscordFetchAvatar", function(client, steamid)
     fetchAvatarURL(util.SteamIDTo64(steamid))
 end)
 
-// Played Spawned
 hook.Add("PlayerSpawn", "DiscordPlayerSpawn", function(client)
     fetchAvatarURL(util.SteamIDTo64(steamid))
 end)
