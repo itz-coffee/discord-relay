@@ -6,7 +6,7 @@ import { IncomingMessage } from "http";
 
 type Response = {
   user: string,
-  avatar?: `https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/${number}_full.jpg`,
+  avatar?: `https://avatars.cloudflare.steamstatic.com/${number}_full.jpg`,
   text: string
 }
 
@@ -19,7 +19,12 @@ wss.on("connection", async (socket: WebSocket, req: IncomingMessage): Promise<vo
       const message: Response = JSON.parse(data.toString());
 
       webhook.setUsername(message.user);
-      webhook.setAvatar(message.avatar ? message.avatar : "");
+      if (message.avatar) {
+        webhook.setAvatar(message.avatar ? message.avatar : "");
+      } else {
+        console.log("Failed fetching avatar, setting default avatar.");
+        webhook.setAvatar("https://cdn.discordapp.com/embed/avatars/0.png");
+      }
       await webhook.send(message.text);
     });
   } else {

@@ -42,7 +42,7 @@ local function fetchAvatarURL(steamID64)
     if fetchedavatars[steamID64] then return fetchedavatars[steamID64] end
 
     http.Fetch("http://steamcommunity.com/profiles/" .. steamID64 .. "/?xml=1", function(body)
-        local link = body:match("https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/.-jpg")
+        local link = body:match("https://avatars.cloudflare.steamstatic.com/.-jpg")
         if not link then return end
         fetchedavatars[steamID64] = link:Replace(".jpg", "_full.jpg")
     end)
@@ -50,6 +50,10 @@ end
 
 hook.Add("PlayerAuthed", "DiscordFetchAvatar", function(client, steamid)
     fetchAvatarURL(util.SteamIDTo64(steamid))
+end)
+
+hook.Add("PlayerSpawn", "DiscordPlayerSpawn", function(client)
+    fetchedavatars[client:SteamID64()]
 end)
 
 hook.Add("PlayerDisconnected", "DiscordClearAvatar", function(client)
