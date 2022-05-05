@@ -19,7 +19,11 @@ wss.on("connection", async (socket: WebSocket, req: IncomingMessage): Promise<vo
       const message: Response = JSON.parse(data.toString());
 
       webhook.setUsername(message.user);
-      webhook.setAvatar(message.avatar ? message.avatar : "");
+      if (message.avatar) {
+        webhook.setAvatar(message.avatar ? message.avatar : "");
+      } else {
+        console.log("Failed fetching avatar");
+      }
       await webhook.send(message.text);
     });
   } else {
