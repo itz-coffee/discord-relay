@@ -42,7 +42,7 @@ local function fetchAvatarURL(steamID64)
     if fetchedavatars[steamID64] then return fetchedavatars[steamID64] end
 
     http.Fetch("http://steamcommunity.com/profiles/" .. steamID64 .. "/?xml=1", function(body)
-        local link = body:match("https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/.-jpg")
+        local link = body:match("https://avatars.cloudflare.steamstatic.com/.-jpg")
         if not link then return end
         fetchedavatars[steamID64] = link:Replace(".jpg", "_full.jpg")
     end)
