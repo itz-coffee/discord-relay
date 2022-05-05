@@ -53,7 +53,7 @@ hook.Add("PlayerAuthed", "DiscordFetchAvatar", function(client, steamid)
 end)
 
 hook.Add("PlayerSpawn", "DiscordPlayerSpawn", function(client)
-    fetchedavatars[client:SteamID64()] = nil
+    fetchAvatarURL(util.SteamIDTo64(steamid))
 end)
 
 hook.Add("PlayerDisconnected", "DiscordClearAvatar", function(client)
