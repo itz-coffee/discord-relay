@@ -6,7 +6,7 @@ import { IncomingMessage } from "http";
 
 type Response = {
   user: string,
-  avatar?: `https://avatars.cloudflare.steamstatic.com/${number}_full.jpg`,
+  avatar?: string,
   text: string
 }
 
