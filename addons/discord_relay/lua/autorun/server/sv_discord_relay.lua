@@ -2,8 +2,8 @@ require("gwsockets")
 
 local config = util.JSONToTable(file.Read("addons/discord_relay.json", "MOD"))
 
-local socket = GWSockets.createWebSocket("ws://" .. config.WSS_HOST .. ":" .. config.WSS_PORT)
-socket:setHeader("Authorization", config.WSS_SECRET)
+local socket = GWSockets.createWebSocket("ws://" .. config.WS_HOST .. ":" .. config.WS_PORT)
+socket:setHeader("Authorization", config.WS_SECRET)
 
 util.AddNetworkString("DiscordChat")
 

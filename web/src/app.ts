@@ -1,5 +1,5 @@
 import { WebSocketServer, WebSocket, RawData } from "ws";
-import { WSS_SECRET, WSS_PORT, BOT_TOKEN, CHANNEL_ID, WEBHOOK } from "./config.json";
+import { WS_SECRET, WS_PORT, BOT_TOKEN, CHANNEL_ID, WEBHOOK } from "./config.json";
 import { Client, Intents, Message } from "discord.js";
 import { Webhook } from "discord-webhook-node";
 import { IncomingMessage } from "http";
@@ -10,11 +10,11 @@ type Response = {
   text: string
 }
 
-const wss = new WebSocketServer({ port: WSS_PORT });
+const wss = new WebSocketServer({ port: WS_PORT });
 const webhook = new Webhook(WEBHOOK);
 
 wss.on("connection", async (socket: WebSocket, req: IncomingMessage): Promise<void> => {
-  if (req.headers.authorization == WSS_SECRET) {
+  if (req.headers.authorization == WS_SECRET) {
     socket.on("message", async (data: RawData) => {
       const message: Response = JSON.parse(data.toString());
 
